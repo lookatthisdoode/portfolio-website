@@ -173,7 +173,7 @@ export default function Home() {
       {/* Projects page. */}
       <div
         id="projects"
-        className={`flex flex-col h-[100vh] bg-backgroundLight items-center justify-center snap-center`}
+        className={`flex flex-col h-[100vh] bg-backgroundLight items-center justify-center snap-center overflow-clip`}
       >
         {/* page content */}
         <div className={`md:h-[60vh] w-full px-3 md:px-0 md:w-3/5 z-20 ${roboto.className} text-text`}>
