@@ -14,50 +14,39 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import {Textarea} from "@/components/ui/textarea"
-import {useRef} from "react";
+import {createMessage} from "@/lib/actions";
 
 
 
 export default function ContactForm( {gratitude}: {gratitude:CallableFunction} ) {
-    const form = useRef<HTMLFormElement | null>(null);
+    const initialFormState = {name:'', contact:'', message: ''}
 
     const formSchema = z.object({
         name: z.string().min(1, {message: 'Name cant empty'}),
         contact: z.string().min(1, {message: 'Contact cant be empty either'}),
-        project: z.string().min(1, {message: 'Well, you know the drill'}),
+        message: z.string().min(1, {message: 'Well, you know the drill'}),
     })
 
-    const formOptions = useForm<z.infer<typeof formSchema>>({
+    // Apparently this defines a whole form
+    const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         //defaultValues for error messages
-        defaultValues: {
-            name: "",
-            contact: "",
-            project: ""
-        },
+        defaultValues: initialFormState,
     })
 
-    // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // console.log(form.current)
-        // form.current && form.current.submit()
+
+    async function onSubmit(values: z.infer<typeof formSchema>) {
         gratitude()
-        console.log(values)
+        form.reset(initialFormState)
+        await createMessage(values)
     }
 
 
-    // create element showin thanks
-    // make that element appear only when you press submit
-    // make it dissapear and slide up after 3 seconds
-    // make a slider
-
-
-
     return (
-        <Form {...formOptions} >
-            <form action={"/"} ref={form} onSubmit={formOptions.handleSubmit(onSubmit)} className="space-y-2 w-full">
+        <Form {...form} >
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 w-full">
                 <FormField
-                    control={formOptions.control}
+                    control={form.control}
                     name="name"
                     render={({ field }) => (
                         <FormItem>
@@ -73,7 +62,7 @@ export default function ContactForm( {gratitude}: {gratitude:CallableFunction} )
                     )}
                 />
                 <FormField
-                    control={formOptions.control}
+                    control={form.control}
                     name="contact"
                     render={({ field }) => (
                         <FormItem>
@@ -89,8 +78,8 @@ export default function ContactForm( {gratitude}: {gratitude:CallableFunction} )
                     )}
                 />
                 <FormField
-                    control={formOptions.control}
-                    name="project"
+                    control={form.control}
+                    name="message"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Project Info</FormLabel>

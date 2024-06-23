@@ -70,7 +70,7 @@ export default function Home() {
         ball.current.style.transform = `translateX(300px) scale(1.3) translateY(200px)`;
         ball.current.style.backgroundColor = `hsl(var(--background-light)`;
       } else if (page === "projects") {
-        ball.current.style.transform = `translateX(1100px) translateY(300px) scale(2.8)`;
+        ball.current.style.transform = `translateX(1200px) translateY(400px) scale(2.2)`;
         ball.current.style.backgroundColor = `hsl(var(--background-dark)`;
       } else if (page === "contact") {
         let size = ball.current.getBoundingClientRect()
@@ -159,7 +159,7 @@ export default function Home() {
         className={`flex min-h-[100vh] bg-backgroundDark items-center justify-center snap-center`}
       >
         {/*page content*/}
-        <div className={`px-4 md:px-0 md:w-3/5 z-20`}>
+        <div className={`px-4 text-text md:px-0 md:w-3/5 z-20`}>
           <h1 className={`text-[4em] ${palanquin.className}`}>
             Andrii Radchenko
           </h1>
@@ -173,10 +173,10 @@ export default function Home() {
       {/* Projects page. */}
       <div
         id="projects"
-        className={`flex flex-col min-h-[100vh] rounded-3xl bg-backgroundLight items-center justify-center snap-center`}
+        className={`flex flex-col h-[100vh] bg-backgroundLight items-center justify-center snap-center`}
       >
         {/* page content */}
-        <div className={`w-full px-3 md:px-0 md:w-3/5 z-20 ${roboto.className}`}>
+        <div className={`h-[60vh] w-full px-3 md:px-0 md:w-3/5 z-20 ${roboto.className}`}>
           <h1 className={`text-[4em] ${palanquin.className}`}>Projects</h1>
           <h2 className={`${roboto.className} italic font-light text-[1.5em]`}>
             I would like to display
@@ -193,15 +193,15 @@ export default function Home() {
       {/* Contact */}
       <div
           id="contact"
-          className={`flex flex-col min-h-[100vh] bg-backgroundDark text-white items-center justify-center snap-center`}
+          className={`relative flex flex-col min-h-[100vh] bg-backgroundDark text-white items-center justify-center snap-center`}
       >
 
-        <div className={`px-4 md:px-0 w-full md:w-3/5 h-[90vh] z-20 flex flex-col items-start justify-center`}>
+        <div className={`h-[60vh] px-4 md:px-0 w-full md:w-3/5 z-20 flex flex-col items-start justify-center`}>
           <h1 className={`${palanquin.className} text-[4em] pb-5`}>Contact me</h1>
           <ContactForm gratitude={showGratitude}/>
         </div>
 
-        <div className={`md:w-3/5 z-20 flex flex-col items-start justify-end`}>
+        <div className={`md:w-3/5 absolute bottom-5 z-20 flex flex-col items-start justify-end`}>
           <span className={`z-20`}>Also You could just <span className={`md:text-backgroundDark underline`}>Email me</span></span>
           <span className={`z-20`}>Or <span
               className={`md:text-backgroundDark underline`}>Download</span> my full CV</span>
