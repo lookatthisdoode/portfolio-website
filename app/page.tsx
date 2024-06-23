@@ -1,113 +1,212 @@
-import Image from "next/image";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
+import { palanquin, roboto } from "@/app/ui/fonts";
+import SweetScroll from "sweet-scroll";
+import Nav from "@/components/nav";
+import ProjectsSlider from "@/components/projects-slider";
+import ContactForm from "@/components/contact-form";
+import {Button} from "@/components/ui/button";
 
 export default function Home() {
+  const scrollableItem = useRef<HTMLDivElement | null>(null);
+  const ball = useRef<HTMLDivElement | null>(null);
+  const popUp = useRef<HTMLDivElement | null>(null);
+  const [scrolledDown, setScrolledDown] = useState(0);
+  const [currentPage, setCurrentPage] = useState<string>("bio");
+  const [popup, setPopup] = useState(false)
+
+  const togglePopup = () => {
+    setPopup(!popup);
+  }
+
+  const showGratitude = () => {
+    //Show it (it will pop from bottom)
+    setPopup(true);
+    // Happens first after 300 ms. Just after
+    setTimeout(()=> {
+      if (scrollableItem.current) {
+        scrollableItem.current.scrollTo({
+          top: 0,
+          // behavior: "smooth",
+        });
+      }
+      popUp.current && popUp.current.classList.remove('animate-slide-up', 'origin-bottom')
+      popUp.current && popUp.current.classList.add('animate-slide-down', 'origin-top')
+      console.log('2000 passed and popup set to close')
+      console.log('setting another timer')
+      setTimeout(() => {
+        if (popUp.current)
+          popUp.current && popUp.current.classList.remove('animate-slide-up', 'origin-bottom')
+        popUp.current && popUp.current.classList.add('animate-slide-down', 'origin-top')
+        setPopup(false);
+        console.log('300 more passed (just after animation up) and popup set back to open')
+      }, 300);
+
+    },2000)
+
+
+    //After
+
+
+
+  };
+
+  const callback = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("intersecting");
+        setCurrentPage(entry.target.id);
+        handleBall(entry.target.id); // Log the currently visible page
+      } else {
+        entry.target.classList.remove("intersecting");
+      }
+    });
+  };
+
+  const handleBall = (page: string) => {
+    if (ball.current) {
+      if (page === "bio") {
+        ball.current.style.transform = `translateX(300px) scale(1.3) translateY(200px)`;
+        ball.current.style.backgroundColor = `hsl(var(--background-light)`;
+      } else if (page === "projects") {
+        ball.current.style.transform = `translateX(1100px) translateY(300px) scale(2.8)`;
+        ball.current.style.backgroundColor = `hsl(var(--background-dark)`;
+      } else if (page === "contact") {
+        let size = ball.current.getBoundingClientRect()
+        console.log(size.width / 2);
+        ball.current.style.backgroundColor = `hsl(var(--background-light)`;
+        ball.current.style.transform = `translateX(10vw) translateY(700px) scale(2)`;
+      }
+    }
+  };
+
+  const handleScroll = () => {
+    // if (scrollableItem.current) {
+    //   const scrollTop = scrollableItem.current.scrollTop;
+    //   const scrollHeight =
+    //     scrollableItem.current.scrollHeight -
+    //     scrollableItem.current.clientHeight;
+    //   const scrolled = (scrollTop / scrollHeight) * 100;
+    //   setScrolledDown(scrollTop);
+    // }
+  };
+
+  useEffect(() => {
+    if (scrollableItem.current) {
+      scrollableItem.current.addEventListener("scroll", handleScroll);
+      SweetScroll.create(
+        {
+          duration: 1000,
+          easing: (_, t, b, c, d, s = 1.70158) =>
+              c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b
+          ,
+          horizontal: true,
+        },
+        "#wrapper",
+      );
+      return () => {
+        if (scrollableItem.current) {
+          scrollableItem.current.removeEventListener("scroll", handleScroll);
+        }
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    const bioElement = document.getElementById("bio");
+    const workElement = document.getElementById("projects");
+    const contactElement = document.getElementById("contact");
+    // document.addEventListener("DOMContentLoaded", () => {
+    // });
+
+    const options = {
+      root: document.querySelector("#scrollArea"),
+      rootMargin: "10px",
+      threshold: 0.5,
+    };
+    // Define observer here
+    const observer = new IntersectionObserver(callback, options);
+
+    if (bioElement) observer.observe(bioElement);
+    if (workElement) observer.observe(workElement);
+    if (contactElement) observer.observe(contactElement);
+
+    return () => {
+      if (bioElement) observer.unobserve(bioElement);
+      if (workElement) observer.unobserve(workElement);
+      if (contactElement) observer.unobserve(contactElement);
+    };
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div
+      id="scrollArea"
+      ref={scrollableItem}
+      className=" snap-mandatory snap-y overflow-y-scroll overflow-x-hidden overflow-hidden"
+    >
+      <Nav active={currentPage} />
+
+      {/* Ball */}
+      <div
+        ref={ball}
+        className={`hidden md:block w-[500px] h-[500px] z-10 absolute left-0 top-0 duration-300 ease-out rounded-full pointer-events-none overflow-hidden`}
+      ></div>
+
+      {/* Bio page. */}
+      <div
+        id="bio"
+        className={`flex min-h-[100vh] bg-backgroundDark items-center justify-center snap-center`}
+      >
+        {/*page content*/}
+        <div className={`px-4 md:px-0 md:w-3/5 z-20`}>
+          <h1 className={`text-[4em] ${palanquin.className}`}>
+            Andrii Radchenko
+          </h1>
+          <h2 className={`${roboto.className} italic font-light text-[1.5em]`}>
+            Javascript developer and freelance graphic designer. I create web
+            stuff
+          </h2>
         </div>
       </div>
 
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      {/* Projects page. */}
+      <div
+        id="projects"
+        className={`flex flex-col min-h-[100vh] rounded-3xl bg-backgroundLight items-center justify-center snap-center`}
+      >
+        {/* page content */}
+        <div className={`w-full px-3 md:px-0 md:w-3/5 z-20 ${roboto.className}`}>
+          <h1 className={`text-[4em] ${palanquin.className}`}>Projects</h1>
+          <h2 className={`${roboto.className} italic font-light text-[1.5em]`}>
+            I would like to display
+          </h2>
+        <ProjectsSlider />
+        </div>
       </div>
 
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+        {popup && <div ref={popUp}
+            className={`absolute inset-0 bg-emerald-700 flex flex-col items-center justify-center z-50 animate-slide-up origin-bottom ${palanquin.className}`}>
+          <h1 className={`text-[4em]`}>Thank you</h1>
+          <h1 className={`animate-bounce`}>Sending You back up</h1>
+        </div>}
+      {/* Contact */}
+      <div
+          id="contact"
+          className={`flex flex-col min-h-[100vh] bg-backgroundDark text-white items-center justify-center snap-center`}
+      >
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+        <div className={`px-4 md:px-0 w-full md:w-3/5 h-[90vh] z-20 flex flex-col items-start justify-center`}>
+          <h1 className={`${palanquin.className} text-[4em] pb-5`}>Contact me</h1>
+          <ContactForm gratitude={showGratitude}/>
+        </div>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+        <div className={`md:w-3/5 z-20 flex flex-col items-start justify-end`}>
+          <span className={`z-20`}>Also You could just <span className={`md:text-backgroundDark underline`}>Email me</span></span>
+          <span className={`z-20`}>Or <span
+              className={`md:text-backgroundDark underline`}>Download</span> my full CV</span>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
