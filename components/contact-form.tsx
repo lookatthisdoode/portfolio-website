@@ -93,7 +93,7 @@ export default function ContactForm( {gratitude}: {gratitude:CallableFunction} )
                         </FormItem>
                     )}
                 />
-                <Button className={`bg-backgroundDark hover:bg-opacity-40 cursor-pointer`} type="submit">Submit</Button>
+                <Button className={`bg-backgroundLight md:bg-backgroundDark md:hover:shadow-xl md:hover:bg-slate-700 cursor-pointer`} type="submit">Submit</Button>
             </form>
         </Form>
     )

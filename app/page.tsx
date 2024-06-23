@@ -176,7 +176,7 @@ export default function Home() {
         className={`flex flex-col h-[100vh] bg-backgroundLight items-center justify-center snap-center`}
       >
         {/* page content */}
-        <div className={`h-[60vh] w-full px-3 md:px-0 md:w-3/5 z-20 ${roboto.className}`}>
+        <div className={`md:h-[60vh] w-full px-3 md:px-0 md:w-3/5 z-20 ${roboto.className} text-text`}>
           <h1 className={`text-[4em] ${palanquin.className}`}>Projects</h1>
           <h2 className={`${roboto.className} italic font-light text-[1.5em]`}>
             I would like to display
@@ -184,6 +184,8 @@ export default function Home() {
         <ProjectsSlider />
         </div>
       </div>
+
+        {/*<ImageBlock / >*/}
 
         {popup && <div ref={popUp}
             className={`absolute inset-0 bg-emerald-700 flex flex-col items-center justify-center z-50 animate-slide-up origin-bottom ${palanquin.className}`}>
@@ -201,9 +203,9 @@ export default function Home() {
           <ContactForm gratitude={showGratitude}/>
         </div>
 
-        <div className={`md:w-3/5 absolute bottom-5 z-20 flex flex-col items-start justify-end`}>
-          <span className={`z-20`}>Also You could just <span className={`md:text-backgroundDark underline`}>Email me</span></span>
-          <span className={`z-20`}>Or <span
+        <div className={`text-sm md:w-3/5 absolute bottom-5 z-20 flex flex-col items-start justify-end`}>
+          <span >Also You could just <span className={`md:text-backgroundDark underline`}>Email me</span></span>
+          <span >Or <span
               className={`md:text-backgroundDark underline`}>Download</span> my full CV</span>
         </div>
       </div>
