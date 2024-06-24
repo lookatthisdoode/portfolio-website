@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { palanquin, roboto, robotoMono } from "@/app/ui/fonts";
 import { Button } from "@/components/ui/button";
-import { IoArrowForwardSharp } from "react-icons/io5";
+import { IoArrowForwardSharp, IoArrowBackSharp } from "react-icons/io5";
 import { FiExternalLink } from "react-icons/fi";
 import Link from "next/link";
 import DesignShowcase from "@/components/design-showcase";
@@ -95,24 +95,35 @@ export default function ProjectsSlider() {
               ) : (
                 <DesignShowcase />
               )}
-              <Button
-                data-state={index == projects.length - 1 ? "last" : ""}
-                className={`top-[100px] md:hidden absolute right-5 rounded-full h-14 aspect-square bg-backgroundLight opacity-90 hover:bg-amber-300 [&[data-state=last]>svg]:rotate-180`}
-                data-scroll={`#${index != projects.length - 1 ? projects[index + 1].id : projects[0].id}`}
-              >
-                <IoArrowForwardSharp size={20} />
-              </Button>
             </div>
 
             {/* Name Links Bio Button */}
             <div
               className={`md:w-2/5 h-full py-1 flex flex-col items-start justify-between`}
             >
-              {/* Name */}
+              {/* Name and mobile buttons */}
               <div className={`gap-2 flex-col flex`}>
-                <h1 className={`text-3xl ${palanquin.className} `}>
-                  {item.name}
-                </h1>
+                <div className={`flex justify-between`}>
+                  <h1 className={`text-3xl ${palanquin.className} `}>
+                    {item.name}
+                  </h1>
+                  <div className={`flex`}>
+                    <Button
+                      data-state={index == projects.length - 1 ? "last" : ""}
+                      className={`md:hidden bg-opacity-0 `}
+                      data-scroll={`#${index != 0 ? projects[index - 1].id : projects[projects.length - 1].id}`}
+                    >
+                      <IoArrowBackSharp size={30} />
+                    </Button>
+                    <Button
+                      data-state={index == projects.length - 1 ? "last" : ""}
+                      className={`md:hidden bg-opacity-0`}
+                      data-scroll={`#${index != projects.length - 1 ? projects[index + 1].id : projects[0].id}`}
+                    >
+                      <IoArrowForwardSharp size={30} />
+                    </Button>
+                  </div>
+                </div>
 
                 {/* Technologies slider*/}
                 {item.technologies && (
@@ -155,14 +166,23 @@ export default function ProjectsSlider() {
                 </div>
               </div>
 
-              {/* PC button */}
-              <Button
-                data-state={index == projects.length - 1 ? "last" : ""}
-                className={`hidden z-50 md:block rounded-full h-30 aspect-square bg-backgroundLight hover:bg-amber-300 [&[data-state=last]>svg]:rotate-180`}
-                data-scroll={`#${index != projects.length - 1 ? projects[index + 1].id : projects[0].id}`}
-              >
-                <IoArrowForwardSharp size={70} />
-              </Button>
+              {/* PC buttons */}
+              <div className={`flex items-baseline gap-3`}>
+                <Button
+                  data-state={index == projects.length - 1 ? "last" : ""}
+                  className={`hidden z-50 md:block rounded-full h-12 aspect-square bg-backgroundLight md:hover:bg-amber-300`}
+                  data-scroll={`#${index != 0 ? projects[index - 1].id : projects[projects.length - 1].id}`}
+                >
+                  <IoArrowBackSharp size={20} />
+                </Button>
+                <Button
+                  data-state={index == projects.length - 1 ? "last" : ""}
+                  className={`hidden z-50 md:block rounded-full h-30 aspect-square bg-backgroundLight md:hover:bg-amber-300`}
+                  data-scroll={`#${index != projects.length - 1 ? projects[index + 1].id : projects[0].id}`}
+                >
+                  <IoArrowForwardSharp size={70} />
+                </Button>
+              </div>
             </div>
           </section>
         );

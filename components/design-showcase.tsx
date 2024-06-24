@@ -3,12 +3,13 @@ import Image from "next/image";
 
 export default function DesignShowcase() {
   const images = [
-    "https://i.imgur.com/cMien9m.jpeg",
-    "https://i.imgur.com/32jMJuM.jpeg",
-    "https://i.imgur.com/sc6jhWu.jpeg",
-    "https://i.imgur.com/PzOg10v.jpeg",
-    "https://i.imgur.com/iJ2mSCm.png",
-    "https://i.imgur.com/dbclEjd.jpeg",
+    "/projects-images/graphic-design/GraphicDesign4.png",
+    "/projects-images/graphic-design/GraphicDesign2.png",
+    "/projects-images/graphic-design/GraphicDesign3.png",
+    "/projects-images/graphic-design/GraphicDesign6.png",
+    "/projects-images/graphic-design/GraphicDesign5.png",
+    "/projects-images/graphic-design/GraphicDesign1.png",
+    "/projects-images/graphic-design/GraphicDesign7.png",
   ];
   const [enlargedIndex, setEnlargedIndex] = useState<number | null>(3);
 
@@ -32,6 +33,7 @@ export default function DesignShowcase() {
           >
             <Image
               src={url}
+              priority={true}
               alt={`${index} design`}
               fill
               className="object-cover"
@@ -52,6 +54,7 @@ export default function DesignShowcase() {
           >
             <Image
               src={url}
+              priority={true}
               alt={`${index} design`}
               fill
               className="object-contain"
