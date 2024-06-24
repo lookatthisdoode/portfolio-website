@@ -6,8 +6,13 @@ import SweetScroll from "sweet-scroll";
 import Nav from "@/components/nav";
 import ProjectsSlider from "@/components/projects-slider";
 import ContactForm from "@/components/contact-form";
-import {Button} from "@/components/ui/button";
-import {IoArrowForwardSharp} from "react-icons/io5";
+import { Button } from "@/components/ui/button";
+import { IoArrowForwardSharp } from "react-icons/io5";
+import DesignShowcase from "@/components/design-showcase";
+import Link from "next/link";
+import { VscGithub as GHLogo } from "react-icons/vsc";
+import { IoDocumentTextOutline as CVLogo } from "react-icons/io5";
+import { MdOutlineAlternateEmail as MAILLogo } from "react-icons/md";
 
 export default function Home() {
   const scrollableItem = useRef<HTMLDivElement | null>(null);
@@ -15,42 +20,40 @@ export default function Home() {
   const popUp = useRef<HTMLDivElement | null>(null);
   const [scrolledDown, setScrolledDown] = useState(0);
   const [currentPage, setCurrentPage] = useState<string>("bio");
-  const [popup, setPopup] = useState(false)
+  const [popup, setPopup] = useState(false);
 
   const togglePopup = () => {
     setPopup(!popup);
-  }
+  };
 
   const showGratitude = () => {
     //Show it (it will pop from bottom)
     setPopup(true);
     // Happens first after 300 ms. Just after
-    setTimeout(()=> {
+    setTimeout(() => {
       if (scrollableItem.current) {
         scrollableItem.current.scrollTo({
           top: 0,
-          // behavior: "smooth",
         });
       }
-      popUp.current && popUp.current.classList.remove('animate-slide-up', 'origin-bottom')
-      popUp.current && popUp.current.classList.add('animate-slide-down', 'origin-top')
-      console.log('2000 passed and popup set to close')
-      console.log('setting another timer')
+      popUp.current &&
+        popUp.current.classList.remove("animate-slide-up", "origin-bottom");
+      popUp.current &&
+        popUp.current.classList.add("animate-slide-down", "origin-top");
+      console.log("2000 passed and popup set to close");
+      console.log("setting another timer");
       setTimeout(() => {
         if (popUp.current)
-          popUp.current && popUp.current.classList.remove('animate-slide-up', 'origin-bottom')
-        popUp.current && popUp.current.classList.add('animate-slide-down', 'origin-top')
+          popUp.current &&
+            popUp.current.classList.remove("animate-slide-up", "origin-bottom");
+        popUp.current &&
+          popUp.current.classList.add("animate-slide-down", "origin-top");
         setPopup(false);
-        console.log('300 more passed (just after animation up) and popup set back to open')
+        console.log(
+          "300 more passed (just after animation up) and popup set back to open",
+        );
       }, 300);
-
-    },2000)
-
-
-    //After
-
-
-
+    }, 2000);
   };
 
   const callback = (entries: IntersectionObserverEntry[]) => {
@@ -68,29 +71,30 @@ export default function Home() {
   const handleBall = (page: string) => {
     if (ball.current) {
       if (page === "bio") {
-        ball.current.style.transform = `translateX(300px) scale(1.3) translateY(200px)`;
+        ball.current.style.transform = `translateX(20vw) scale(1.3) translateY(20vh)`;
         ball.current.style.backgroundColor = `hsl(var(--background-light)`;
       } else if (page === "projects") {
-        ball.current.style.transform = `translateX(1200px) translateY(400px) scale(2.2)`;
+        ball.current.style.transform = `translateX(50vw) translateY(400px) scale(2.2)`;
         ball.current.style.backgroundColor = `hsl(var(--background-dark)`;
       } else if (page === "contact") {
-        let size = ball.current.getBoundingClientRect()
+        let size = ball.current.getBoundingClientRect();
         console.log(size.width / 2);
         ball.current.style.backgroundColor = `hsl(var(--background-light)`;
-        ball.current.style.transform = `translateX(10vw) translateY(700px) scale(2)`;
+        ball.current.style.transform = `translateX(10vw) translateY(700px) scale(1.8)`;
       }
     }
   };
 
   const handleScroll = () => {
-    // if (scrollableItem.current) {
-    //   const scrollTop = scrollableItem.current.scrollTop;
-    //   const scrollHeight =
-    //     scrollableItem.current.scrollHeight -
-    //     scrollableItem.current.clientHeight;
-    //   const scrolled = (scrollTop / scrollHeight) * 100;
-    //   setScrolledDown(scrollTop);
-    // }
+    if (scrollableItem.current) {
+      const scrollTop = scrollableItem.current.scrollTop;
+      const scrollHeight =
+        scrollableItem.current.scrollHeight -
+        scrollableItem.current.clientHeight;
+      const scrolledPercetage = (scrollTop / scrollHeight) * 100;
+      // setScrolledDown(scrollTop);
+      console.log(scrolledPercetage);
+    }
   };
 
   useEffect(() => {
@@ -99,7 +103,7 @@ export default function Home() {
       SweetScroll.create(
         {
           duration: 1000,
-          easing: 'easeOutCubic',
+          easing: "easeOutCubic",
           horizontal: true,
         },
         "#wrapper",
@@ -142,14 +146,14 @@ export default function Home() {
     <div
       id="scrollArea"
       ref={scrollableItem}
-      className=" snap-mandatory snap-y overflow-y-scroll overflow-x-hidden overflow-hidden"
+      className="snap-mandatory snap-y overflow-y-scroll overflow-x-hidden overflow-hidden"
     >
       <Nav active={currentPage} />
 
       {/* Ball */}
       <div
         ref={ball}
-        className={`w-[500px] h-[500px] z-10 absolute left-0 top-0 duration-300 ease-out rounded-full pointer-events-none overflow-hidden`}
+        className={`transform-gpu w-[500px] h-[500px] z-10 absolute left-0 top-0 duration-300 ease-out rounded-full pointer-events-none overflow-hidden`}
       ></div>
 
       {/* Bio page. */}
@@ -158,7 +162,7 @@ export default function Home() {
         className={`flex min-h-[100vh] bg-backgroundDark items-center justify-center snap-center relative`}
       >
         <Button
-          onClick={(e)=> {
+          onClick={(e) => {
             e.preventDefault();
             scrollableItem.current?.scrollBy({
               behavior: "smooth",
@@ -170,55 +174,116 @@ export default function Home() {
           <IoArrowForwardSharp size={70} />
         </Button>
 
-        {/*page content*/}
         <div className={`px-4 text-text md:px-0 md:w-3/5 z-20`}>
-
           <h1 className={`md:text-7xl text-3xl py-2 ${palanquin.className}`}>
             Andrii Radchenko
           </h1>
-          <h2 className={`${roboto.className} italic md:pl-3 md:text-2xl`}>
+          <h2
+            className={`${robotoMono.className} text-sm text-gray-300 :pl-3 md:text-2xl`}
+          >
             javascript developer and freelance graphic designer based in Brno
           </h2>
         </div>
+        {/*  End of page 1 */}
       </div>
 
       {/* Projects page. */}
       <div
-          id="projects"
-          className={`flex flex-col h-[100vh] bg-backgroundLight items-center justify-center snap-center overflow-clip`}
+        id="projects"
+        className={`flex flex-col h-[100vh] bg-backgroundLight items-center justify-center snap-center overflow-clip`}
       >
         {/* page content */}
-        <div className={`md:h-[60vh] w-full px-3 md:px-0 md:w-3/5 z-20 ${roboto.className} text-text`}>
-          <h1 className={`md:text-7xl py-2 ${palanquin.className}`}>Projects</h1>
-          <h2 className={`${roboto.className} italic text-2xl md:pl-3`}>
+        <div
+          className={`md:h-[60vh] w-full px-3 md:px-0 md:w-3/5 z-20 text-text`}
+        >
+          <h1
+            className={`md:text-7xl text-gray-600 text-3xl py-2 ${palanquin.className}`}
+          >
+            Projects
+          </h1>
+          <h2
+            className={`${robotoMono.className} text-sm text-gray-200 md:pl-3 md:text-2xl`}
+          >
             I would like to display
           </h2>
-        <ProjectsSlider />
+          <ProjectsSlider />
         </div>
       </div>
 
-        {/*<ImageBlock / >*/}
-
-        {popup && <div ref={popUp}
-            className={`absolute inset-0 bg-emerald-700 flex flex-col items-center justify-center z-50 animate-slide-up origin-bottom ${palanquin.className}`}>
+      {popup && (
+        <div
+          ref={popUp}
+          className={`absolute inset-0 bg-emerald-700 flex flex-col items-center justify-center z-50 animate-slide-up origin-bottom ${palanquin.className}`}
+        >
           <h1 className={`text-[4em]`}>Thank you</h1>
-          <h1 className={`animate-bounce`}>Sending You back up</h1>
-        </div>}
+          <h1 className={`animate-bounce ${robotoMono.className}`}>
+            sending You back up
+          </h1>
+        </div>
+      )}
       {/* Contact */}
       <div
-          id="contact"
-          className={`relative flex flex-col min-h-[100vh] bg-backgroundDark text-white items-center justify-center snap-center`}
+        id="contact"
+        className={`relative flex flex-col min-h-[100vh] bg-backgroundDark text-white items-center justify-center snap-center`}
       >
-
-        <div className={`h-[60vh] px-4 md:px-0 w-full md:w-3/5 z-20 flex flex-col items-start justify-center`}>
-          <h1 className={`${palanquin.className} text-[2em] md:text-[4em] pb-5`}>Contact me</h1>
-          <ContactForm gratitude={showGratitude}/>
+        <div
+          className={`h-[60vh] px-4 md:px-0 w-full md:w-3/5 z-20 flex flex-col items-start justify-center`}
+        >
+          <h1
+            className={`${palanquin.className} text-[2em] md:text-[4em] pb-5`}
+          >
+            Contact me
+          </h1>
+          <ContactForm gratitude={showGratitude} />
         </div>
 
-        <div className={`text-sm md:w-3/5 absolute bottom-5 z-20 flex flex-col items-start justify-end`}>
-          <span >Also You could just <span className={`md:text-backgroundDark underline`}>Email me</span></span>
-          <span >Or <span
-              className={`md:text-backgroundDark underline`}>Download</span> my full CV</span>
+        {/* pc */}
+        <div
+          className={`text-sm hidden md:w-3/5 absolute bottom-5 z-20 md:flex flex-col items-start justify-end`}
+        >
+          <div>
+            {"Also You could just "}
+            <Link
+              className={`text-backgroundDark underline`}
+              href={"mailto:radchenko.andreii@gmail.com"}
+            >
+              {"Email Me"}
+            </Link>
+          </div>
+          <div>
+            {"Check my other projects on "}
+            <Link
+              className={`text-backgroundDark underline`}
+              href={"https://github.com/lookatthisdoode"}
+            >
+              {"GitHub"}
+            </Link>
+          </div>
+          <div>
+            {"Or "}
+            <Link
+              className={`text-backgroundDark underline`}
+              href={"https://github.com/lookatthisdoode"}
+            >
+              {"Download"}
+            </Link>
+            {" my full CV"}
+          </div>
+        </div>
+
+        {/* mobile */}
+        <div
+          className={`md:hidden absolute bottom-5 z-20 flex w-full justify-center gap-5 py-2 `}
+        >
+          <Link href={"https://github.com/lookatthisdoode"}>
+            <MAILLogo size={25} />
+          </Link>
+          <Link href={"https://github.com/lookatthisdoode"}>
+            <GHLogo size={25} />
+          </Link>
+          <Link href={"https://github.com/lookatthisdoode"}>
+            <CVLogo size={25} />
+          </Link>
         </div>
       </div>
     </div>

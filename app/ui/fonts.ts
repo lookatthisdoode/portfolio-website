@@ -8,5 +8,6 @@ export const roboto = Roboto({
 });
 export const robotoMono = Roboto_Mono({
   subsets: ['latin'],
+  style: ["normal", "italic"],
   weight: ["700", '200', "400"],
 })

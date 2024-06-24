@@ -18,6 +18,10 @@ const config = {
       },
     },
     extend: {
+      transitionProperty: {
+        'grid-span': 'grid-column',
+        'width': 'width',
+      },
       colors: {
         backgroundDark: "hsl(var(--background-dark))",
         backgroundLight: "hsl(var(--background-light))",
