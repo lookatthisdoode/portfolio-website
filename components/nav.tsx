@@ -44,7 +44,7 @@ export default function Nav({ active }: { active: string }) {
 
       {/* Mobile Nav*/}
       <div
-        className={`w-full justify-between absolute top-0 md:hidden z-50 p-5 flex gap-2 ${robotoMono.className}`}
+        className={`w-full justify-between absolute top-0 md:hidden z-50 px-4 md:p-5 flex gap-2 ${robotoMono.className}`}
       >
         {links.map((link, index) => {
           return (
