@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { palanquin, roboto } from "@/app/ui/fonts";
+import { palanquin, roboto, robotoMono } from "@/app/ui/fonts";
 import SweetScroll from "sweet-scroll";
 import Nav from "@/components/nav";
 import ProjectsSlider from "@/components/projects-slider";
 import ContactForm from "@/components/contact-form";
 import {Button} from "@/components/ui/button";
+import {IoArrowForwardSharp} from "react-icons/io5";
 
 export default function Home() {
   const scrollableItem = useRef<HTMLDivElement | null>(null);
@@ -98,9 +99,7 @@ export default function Home() {
       SweetScroll.create(
         {
           duration: 1000,
-          easing: (_, t, b, c, d, s = 1.70158) =>
-              c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b
-          ,
+          easing: 'easeOutCubic',
           horizontal: true,
         },
         "#wrapper",
@@ -150,35 +149,48 @@ export default function Home() {
       {/* Ball */}
       <div
         ref={ball}
-        className={`hidden md:block w-[500px] h-[500px] z-10 absolute left-0 top-0 duration-300 ease-out rounded-full pointer-events-none overflow-hidden`}
+        className={`w-[500px] h-[500px] z-10 absolute left-0 top-0 duration-300 ease-out rounded-full pointer-events-none overflow-hidden`}
       ></div>
 
       {/* Bio page. */}
       <div
         id="bio"
-        className={`flex min-h-[100vh] bg-backgroundDark items-center justify-center snap-center`}
+        className={`flex min-h-[100vh] bg-backgroundDark items-center justify-center snap-center relative`}
       >
+        <Button
+          onClick={(e)=> {
+            e.preventDefault();
+            scrollableItem.current?.scrollBy({
+              behavior: "smooth",
+              top: window.innerHeight,
+            });
+          }}
+          className={`absolute bottom-10 right-32 hidden md:block rounded-full h-30 aspect-square bg-backgroundLight hover:bg-amber-300 [&>svg]:rotate-90 animate-bounce`}
+        >
+          <IoArrowForwardSharp size={70} />
+        </Button>
+
         {/*page content*/}
         <div className={`px-4 text-text md:px-0 md:w-3/5 z-20`}>
-          <h1 className={`text-[4em] ${palanquin.className}`}>
+
+          <h1 className={`md:text-7xl text-3xl py-2 ${palanquin.className}`}>
             Andrii Radchenko
           </h1>
-          <h2 className={`${roboto.className} italic font-light text-[1.5em]`}>
-            Javascript developer and freelance graphic designer. I create web
-            stuff
+          <h2 className={`${roboto.className} italic md:pl-3 md:text-2xl`}>
+            javascript developer and freelance graphic designer based in Brno
           </h2>
         </div>
       </div>
 
       {/* Projects page. */}
       <div
-        id="projects"
-        className={`flex flex-col h-[100vh] bg-backgroundLight items-center justify-center snap-center overflow-clip`}
+          id="projects"
+          className={`flex flex-col h-[100vh] bg-backgroundLight items-center justify-center snap-center overflow-clip`}
       >
         {/* page content */}
         <div className={`md:h-[60vh] w-full px-3 md:px-0 md:w-3/5 z-20 ${roboto.className} text-text`}>
-          <h1 className={`text-[4em] ${palanquin.className}`}>Projects</h1>
-          <h2 className={`${roboto.className} italic font-light text-[1.5em]`}>
+          <h1 className={`md:text-7xl py-2 ${palanquin.className}`}>Projects</h1>
+          <h2 className={`${roboto.className} italic text-2xl md:pl-3`}>
             I would like to display
           </h2>
         <ProjectsSlider />
