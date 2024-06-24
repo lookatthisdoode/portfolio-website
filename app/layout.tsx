@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} h-screen w-full flex flex-col overflow-hidden bg-backgroundDark`}
+        className={`${inter.className} relative h-screen w-full flex flex-col overflow-hidden bg-backgroundDark`}
       >
         {children}
       </body>
