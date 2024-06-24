@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { createMessage } from "@/lib/actions";
+import { robotoMono } from "@/app/ui/fonts";
 
 export default function ContactForm({
   gratitude,
@@ -44,7 +45,10 @@ export default function ContactForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2 w-full">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className={`space-y-2 w-full ${robotoMono.className}`}
+      >
         <FormField
           control={form.control}
           name="name"
@@ -89,8 +93,9 @@ export default function ContactForm({
             </FormItem>
           )}
         />
+        <div className={`h-[10px]`}></div>
         <Button
-          className={`md:w-auto w-full bg-backgroundDark md:bg-backgroundDark md:hover:shadow-xl md:hover:bg-slate-700 cursor-pointer`}
+          className={`bg-text text-backgroundDark md:text-text md:bg-backgroundDark md:hover:shadow-xl md:hover:bg-slate-700 cursor-pointer`}
           type="submit"
         >
           Send

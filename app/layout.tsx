@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import React from "react";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -14,7 +11,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "R.A. Portfolio ",
+  title: "Radchenko Andrii | Web Developer",
   description: "Web developer portfolio",
 };
 
@@ -26,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} relative h-screen w-full flex flex-col overflow-hidden bg-backgroundDark`}
+        className={`relative h-[100vh] w-full flex flex-col overflow-clip bg-backgroundDark`}
       >
         {children}
       </body>

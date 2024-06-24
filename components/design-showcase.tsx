@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 
 export default function DesignShowcase() {
@@ -12,7 +12,6 @@ export default function DesignShowcase() {
     "/projects-images/graphic-design/GraphicDesign7.png",
   ];
   const [enlargedIndex, setEnlargedIndex] = useState<number>(0);
-
   const handleMouseOver = (index: number) => {
     setEnlargedIndex(index);
   };

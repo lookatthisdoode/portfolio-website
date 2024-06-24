@@ -27,9 +27,9 @@ export default function ProjectsSlider() {
       ],
     },
     {
-      name: "Vitalina",
+      name: "Vitalina Accessories Store",
       id: "vitalina",
-      bio: "This is a work-in-progress project built using Vite as a three-part application. Mockup of online store. The frontend is hosted on GitHub Pages, while a custom API with a basic CMS runs on Heroku, utilizing MongoDB Atlas for the database. Features include real-time content updates and a saveable shopping cart.",
+      bio: "Mockup of online store built using Vite as a three-part application. The frontend is hosted on GitHub Pages, while a custom API with a basic CMS runs on Heroku, utilizing MongoDB Atlas for the database. Features include real-time content updates and a saveable shopping cart.",
       image_url: "/projects-images/vitalina.png",
       demo: "https://lookatthisdoode.github.io/accessories-store-vite/",
       repo: "https://github.com/lookatthisdoode/accessories-store-vite",

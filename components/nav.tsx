@@ -44,7 +44,7 @@ export default function Nav({ active }: { active: string }) {
 
       {/* Mobile Nav*/}
       <div
-        className={`w-full justify-between absolute top-0 md:hidden z-50 px-4 md:p-5 flex gap-2 ${robotoMono.className}`}
+        className={`w-full justify-between absolute top-0 md:hidden z-50 p-5 md:p-5 flex gap-2 bg-gray-50 ${robotoMono.className}`}
       >
         {links.map((link, index) => {
           return (
@@ -56,7 +56,7 @@ export default function Nav({ active }: { active: string }) {
                 const el = document.querySelector(`${link.link}`);
                 el?.scrollIntoView({ behavior: "smooth" });
               }}
-              className={`${link.name == active ? "text-gray-100" : "text-gray-500"}`}
+              className={`${link.name == active ? "text-gray-100 bg-backgroundLight" : "text-gray-500"} w-1/3 text-center`}
             >
               {link.name}
             </a>
