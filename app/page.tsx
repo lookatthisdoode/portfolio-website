@@ -223,7 +223,7 @@ export default function Home() {
       {/* Contact */}
       <div
         id="contact"
-        className={`relative flex flex-col min-h-[100vh] bg-backgroundDark text-white items-center justify-center snap-center`}
+        className={`relative flex flex-col min-h-[100dvh] bg-backgroundDark text-white items-center justify-center snap-center`}
       >
         <div
           className={`h-[60vh] px-4 md:px-0 w-full md:w-3/5 z-20 flex flex-col items-start justify-center`}
