@@ -54,7 +54,7 @@ export default function ContactForm({
               <FormControl>
                 <Input placeholder="John Smith" {...field} />
               </FormControl>
-              <FormDescription>Your name</FormDescription>
+
               <FormMessage />
             </FormItem>
           )}
@@ -68,7 +68,7 @@ export default function ContactForm({
               <FormControl>
                 <Input placeholder="john.smith@gmail.com" {...field} />
               </FormControl>
-              <FormDescription>How can I get back to You?</FormDescription>
+
               <FormMessage />
             </FormItem>
           )}
@@ -78,14 +78,13 @@ export default function ContactForm({
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Project Info</FormLabel>
+              <FormLabel>What do you have in mind?</FormLabel>
               <FormControl>
                 <Textarea
                   placeholder="I have a coffee shop that I want to have a website for."
                   {...field}
                 />
               </FormControl>
-              <FormDescription>What do you have in mind?</FormDescription>
               <FormMessage />
             </FormItem>
           )}

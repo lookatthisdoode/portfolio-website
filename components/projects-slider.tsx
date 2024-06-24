@@ -142,7 +142,7 @@ export default function ProjectsSlider() {
                   {item.demo && (
                     <Link
                       href={item.demo}
-                      className={`flex gap-2 hover:text-yellow-400 `}
+                      className={`flex gap-2 hover:text-yellow-300 `}
                     >
                       Demo
                       <FiExternalLink
@@ -154,7 +154,7 @@ export default function ProjectsSlider() {
                   {item.repo && (
                     <Link
                       href={item.repo}
-                      className={`flex gap-2 hover:text-yellow-400`}
+                      className={`flex gap-2 hover:text-yellow-300`}
                     >
                       Github Repo
                       <FiExternalLink
@@ -167,17 +167,17 @@ export default function ProjectsSlider() {
               </div>
 
               {/* PC buttons */}
-              <div className={`flex items-baseline gap-3`}>
+              <div className={`flex items-baseline gap-3 pt-10`}>
                 <Button
                   data-state={index == projects.length - 1 ? "last" : ""}
-                  className={`hidden z-50 md:block rounded-full h-12 aspect-square bg-backgroundLight md:hover:bg-amber-300`}
+                  className={`hidden z-50 md:block rounded-full h-12 aspect-square bg-backgroundLight md:hover:bg-yellow-200`}
                   data-scroll={`#${index != 0 ? projects[index - 1].id : projects[projects.length - 1].id}`}
                 >
                   <IoArrowBackSharp size={20} />
                 </Button>
                 <Button
                   data-state={index == projects.length - 1 ? "last" : ""}
-                  className={`hidden z-50 md:block rounded-full h-30 aspect-square bg-backgroundLight md:hover:bg-amber-300`}
+                  className={`hidden z-50 md:block rounded-full h-30 aspect-square bg-backgroundLight md:hover:bg-yellow-200`}
                   data-scroll={`#${index != projects.length - 1 ? projects[index + 1].id : projects[0].id}`}
                 >
                   <IoArrowForwardSharp size={70} />

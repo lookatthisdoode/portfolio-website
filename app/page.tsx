@@ -93,7 +93,6 @@ export default function Home() {
         scrollableItem.current.clientHeight;
       const scrolledPercetage = (scrollTop / scrollHeight) * 100;
       // setScrolledDown(scrollTop);
-      console.log(scrolledPercetage);
     }
   };
 
@@ -197,12 +196,12 @@ export default function Home() {
           className={`md:h-[60vh] w-full px-3 md:px-0 md:w-3/5 z-20 text-text`}
         >
           <h1
-            className={`md:text-7xl text-gray-600 text-3xl py-2 ${palanquin.className}`}
+            className={`md:text-7xl text-backgroundDark  text-3xl py-2 ${palanquin.className}`}
           >
             Projects
           </h1>
           <h2
-            className={`${robotoMono.className} text-sm text-gray-200 md:pl-3 md:text-2xl`}
+            className={`${robotoMono.className} text-sm text-gray-600 md:pl-3 md:text-2xl`}
           >
             I would like to display
           </h2>
