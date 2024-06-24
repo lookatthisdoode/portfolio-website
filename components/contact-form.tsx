@@ -91,7 +91,7 @@ export default function ContactForm({
           )}
         />
         <Button
-          className={`bg-backgroundDark md:bg-backgroundDark md:hover:shadow-xl md:hover:bg-slate-700 cursor-pointer`}
+          className={`md:w-auto w-full bg-backgroundDark md:bg-backgroundDark md:hover:shadow-xl md:hover:bg-slate-700 cursor-pointer`}
           type="submit"
         >
           Send

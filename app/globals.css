@@ -61,6 +61,10 @@
   animation-delay: 2.5s;
 }
 
+.preview {
+  animation: image-display .3s linear;
+}
+
 @keyframes marquee {
   0% {
     transform: translate(0, 0);
@@ -69,6 +73,16 @@
     transform: translate(-100%, 0);
   }
 }
+
+@keyframes image-display {
+  0% {
+    width: 90%;
+  }
+  100% {
+    width: 10%;
+  }
+}
+
 
 
 

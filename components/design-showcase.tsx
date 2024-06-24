@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function DesignShowcase() {
@@ -11,7 +11,7 @@ export default function DesignShowcase() {
     "/projects-images/graphic-design/GraphicDesign1.png",
     "/projects-images/graphic-design/GraphicDesign7.png",
   ];
-  const [enlargedIndex, setEnlargedIndex] = useState<number | null>(3);
+  const [enlargedIndex, setEnlargedIndex] = useState<number>(0);
 
   const handleMouseOver = (index: number) => {
     setEnlargedIndex(index);
@@ -25,37 +25,14 @@ export default function DesignShowcase() {
 
   return (
     <>
-      {/*<div*/}
-      {/*  id="imageShowcasePc"*/}
-      {/*  className={`bg-backgroundDark snap-center absolute inset-0 overflow-clip hidden md:flex`}*/}
-      {/*>*/}
-      {/*  {images.map((url, index) => (*/}
-      {/*    <div*/}
-      {/*      key={index}*/}
-      {/*      onMouseOver={() => handleMouseOver(index)}*/}
-      {/*      className={`${*/}
-      {/*        enlargedIndex === index ? "grid-large" : "grid-small"*/}
-      {/*      } relative`}*/}
-      {/*    >*/}
-      {/*      <Image*/}
-      {/*        src={url}*/}
-      {/*        priority={true}*/}
-      {/*        alt={`${index} design`}*/}
-      {/*        fill*/}
-      {/*        className="object-cover"*/}
-      {/*      />*/}
-      {/*    </div>*/}
-      {/*  ))}*/}
-      {/*</div>*/}
-
       <div
         id="imageShowcasePc"
-        className={`bg-backgroundDark snap-center absolute inset-0 overflow-clip flex`}
+        className={`bg-backgroundDark snap-center absolute inset-0 overflow-clip hidden md:flex`}
       >
         {images.map((url, index) => (
           <div
             key={index}
-            onClick={(e) => handleClick(e, index)}
+            onMouseOver={() => handleMouseOver(index)}
             className={`${
               enlargedIndex === index ? "grid-large" : "grid-small"
             } relative`}
@@ -71,26 +48,28 @@ export default function DesignShowcase() {
         ))}
       </div>
 
-      {/*<div*/}
-      {/*  id="imageShowcaseMobile"*/}
-      {/*  className={`snap-x snap-mandatory absolute inset-0 flex overflow-x-scroll md:hidden bg-backgroundDark`}*/}
-      {/*>*/}
-      {/*  {images.map((url, index) => (*/}
-      {/*    <div*/}
-      {/*      key={index}*/}
-      {/*      onMouseOver={() => handleMouseOver(index)}*/}
-      {/*      className={`min-w-full relative snap-center`}*/}
-      {/*    >*/}
-      {/*      <Image*/}
-      {/*        src={url}*/}
-      {/*        priority={true}*/}
-      {/*        alt={`${index} design`}*/}
-      {/*        fill*/}
-      {/*        className="object-contain"*/}
-      {/*      />*/}
-      {/*    </div>*/}
-      {/*  ))}*/}
-      {/*</div>*/}
+      <div
+        id="imageShowcaseMobile"
+        className={`bg-backgroundDark md:hidden snap-center absolute inset-0 overflow-clip flex`}
+      >
+        {images.map((url, index) => (
+          <div
+            key={index}
+            onClick={(e) => handleClick(e, index)}
+            className={`${
+              enlargedIndex === index ? "grid-large" : "grid-small"
+            } relative `}
+          >
+            <Image
+              src={url}
+              priority={true}
+              alt={`${index} design`}
+              fill
+              className="object-cover"
+            />
+          </div>
+        ))}
+      </div>
     </>
   );
 }

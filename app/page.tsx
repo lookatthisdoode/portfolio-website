@@ -263,7 +263,9 @@ export default function Home() {
             {"Or "}
             <Link
               className={`text-backgroundDark underline`}
-              href={"https://github.com/lookatthisdoode"}
+              href={"/andrii_radchenko_cv.pdf"}
+              locale={false}
+              download
             >
               {"Download"}
             </Link>
@@ -275,13 +277,13 @@ export default function Home() {
         <div
           className={`md:hidden absolute bottom-5 z-20 flex w-full justify-center gap-5 py-2 `}
         >
-          <Link href={"https://github.com/lookatthisdoode"}>
+          <Link href={"mailto:radchenko.andreii@gmail.com"}>
             <MAILLogo size={25} />
           </Link>
           <Link href={"https://github.com/lookatthisdoode"}>
             <GHLogo size={25} />
           </Link>
-          <Link href={"https://github.com/lookatthisdoode"}>
+          <Link download locale={false} href={"/andrii_radchenko_cv.pdf"}>
             <CVLogo size={25} />
           </Link>
         </div>
