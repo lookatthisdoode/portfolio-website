@@ -24,6 +24,11 @@ export default function HeroPage({
       </Button>
 
       <div className={`px-4 text-text md:px-0 md:w-3/5 z-20`}>
+        <h2
+          className={`${robotoMono.className} text-sm text-gray-300 :pl-3 md:text-2xl`}
+        >
+          hello, I am
+        </h2>
         <h1 className={`md:text-7xl text-3xl py-2 ${palanquin.className}`}>
           Andrii Radchenko
         </h1>

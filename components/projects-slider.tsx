@@ -14,7 +14,7 @@ export default function ProjectsSlider() {
       name: "The Nomad Kitchen",
       id: "nomad",
       bio: "A restaurant website built with Next.js for both the front and backend. The standout feature is a comprehensive content management system that allows for creating, retrieving, and updating items in the database. Additionally, the mobile version includes a parallax scrolling effect for an enhanced user experience.",
-      image_url: "/projects-images/nomad.png",
+      image_url: "/projects-images/nomad.gif",
       demo: "https://thenomadkitchen.vercel.app/",
       repo: "https://github.com/lookatthisdoode/thenomadkitchen",
       technologies: [
@@ -30,7 +30,7 @@ export default function ProjectsSlider() {
       name: "Vitalina Accessories Store",
       id: "vitalina",
       bio: "Mockup of online store built using Vite as a three-part application. The frontend is hosted on GitHub Pages, while a custom API with a basic CMS runs on Heroku, utilizing MongoDB Atlas for the database. Features include real-time content updates and a saveable shopping cart.",
-      image_url: "/projects-images/vitalina.png",
+      image_url: "/projects-images/vita.gif",
       demo: "https://lookatthisdoode.github.io/accessories-store-vite/",
       repo: "https://github.com/lookatthisdoode/accessories-store-vite",
       technologies: [
@@ -46,7 +46,6 @@ export default function ProjectsSlider() {
       name: "Graphic Design",
       id: "design",
       bio: "Various graphic design projects collected over the years featuring everything from logo and business card designs to comprehensive business identity rulebooks and website designs.",
-      repo: "https://github.com/lookatthisdoode/clarence-2-0",
       technologies: [
         "Adobe Illustrator",
         "Canva",
@@ -68,7 +67,7 @@ export default function ProjectsSlider() {
       id: "clarence",
       bio: "Reviving the Clarence 1.0 Discord audio player, which connects seamlessly to your Discord channel to play music or podcasts. Equipped with essential player functionalities such as play, skip, and search from popular APIs, it utilizes Discord.js and the discord-player libraries to deliver a robust listening experience.",
       technologies: ["Vanilla Javascript", "Discord.js", "Python"],
-      image_url: "/projects-images/clarence.png",
+      image_url: "/projects-images/clarence.gif",
       repo: "https://github.com/lookatthisdoode/clarence-2-0",
     },
   ];
