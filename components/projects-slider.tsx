@@ -88,6 +88,7 @@ export default function ProjectsSlider() {
                   className={"object-cover -z-10"}
                   src={item.image_url}
                   fill
+                  priority={index === 0 || index === 1}
                   alt={item.name + " Project"}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
                 />
