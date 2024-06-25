@@ -45,7 +45,7 @@ export default function ProjectsSlider() {
     {
       name: "Graphic Design",
       id: "design",
-      bio: "Collection of graphic design projects featuring everything from logo and business card designs to comprehensive business identity rulebooks and website designs.",
+      bio: "Various graphic design projects collected over the years featuring everything from logo and business card designs to comprehensive business identity rulebooks and website designs.",
       repo: "https://github.com/lookatthisdoode/clarence-2-0",
       technologies: [
         "Adobe Illustrator",
@@ -59,9 +59,9 @@ export default function ProjectsSlider() {
     {
       name: "Project Noodle Run",
       id: "noodle",
-      bio: "Little indie game we have been workin on. Downhill racing with godot engine. Currently stuck on AI for opponents. Eurobeat intensifies.",
+      bio: "Writing main script for a little indie game we have been working on. Downhill style racing game with Godot engine. Currently working on AI for opponents. Eurobeat intensifies.",
       technologies: ["GDscript", "Godot", "Aseprite", "Python"],
-      image_url: "/projects-images/noodle.png",
+      image_url: "/projects-images/noodle.gif",
     },
     {
       name: "Clarence 2.0",
