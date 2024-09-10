@@ -20,9 +20,9 @@ export default function Nav({ active }: { active: string }) {
     <nav>
       {/* PC */}
       <div
-        className={`absolute top-10 w-full items-center justify-center hidden md:flex ${robotoMono.className}`}
+        className={`fixed z-[55] top-10 w-full items-center justify-center hidden md:flex ${robotoMono.className}`}
       >
-        <div className="flex items-center justify-end gap-3 py-3 text-lg w-3/5 px-4 z-50">
+        <div className="flex items-center justify-end gap-3 py-3 text-lg w-3/5 px-4 ">
           {links.map((link, index) => {
             return (
               <a
@@ -44,7 +44,7 @@ export default function Nav({ active }: { active: string }) {
 
       {/* Mobile Nav*/}
       <div
-        className={`w-full justify-between absolute top-0 md:hidden z-50 p-5 md:p-5 flex gap-2 bg-gray-50 ${robotoMono.className}`}
+        className={`w-full justify-between fixed top-0 md:hidden z-[55] p-5 md:p-5 flex gap-2 bg-gray-50 ${robotoMono.className}`}
       >
         {links.map((link, index) => {
           return (

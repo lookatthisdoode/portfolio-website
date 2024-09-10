@@ -61,15 +61,7 @@ export default function ProjectsSlider() {
       bio: "Writing main script for a little indie game we have been working on. Downhill style racing game with Godot engine. Currently working on AI for opponents. Eurobeat intensifies.",
       technologies: ["GDscript", "Godot", "Aseprite", "Python"],
       image_url: "/projects-images/noodle.gif",
-    },
-    {
-      name: "Clarence 2.0",
-      id: "clarence",
-      bio: "Reviving the Clarence 1.0 Discord audio player, which connects seamlessly to your Discord channel to play music or podcasts. Equipped with essential player functionalities such as play, skip, and search from popular APIs, it utilizes Discord.js and the discord-player libraries to deliver a robust listening experience.",
-      technologies: ["Vanilla Javascript", "Discord.js", "Python"],
-      image_url: "/projects-images/clarence.gif",
-      repo: "https://github.com/lookatthisdoode/clarence-2-0",
-    },
+    }
   ];
 
   return (
@@ -158,14 +150,14 @@ export default function ProjectsSlider() {
               <div className={`flex items-baseline gap-3 pt-10`}>
                 <Button
                   data-state={index == projects.length - 1 ? "last" : ""}
-                  className={`hidden z-50 md:block rounded-full h-12 aspect-square bg-backgroundLight md:hover:bg-yellow-200`}
+                  className={`hidden z-40 md:block rounded-full h-12 aspect-square bg-backgroundLight md:hover:bg-yellow-200`}
                   data-scroll={`#${index != 0 ? projects[index - 1].id : projects[projects.length - 1].id}`}
                 >
                   <IoArrowBackSharp size={20} />
                 </Button>
                 <Button
                   data-state={index == projects.length - 1 ? "last" : ""}
-                  className={`hidden z-50 md:block rounded-full h-30 aspect-square bg-backgroundLight md:hover:bg-yellow-200`}
+                  className={`hidden z-40 md:block rounded-full h-30 aspect-square bg-backgroundLight md:hover:bg-yellow-200`}
                   data-scroll={`#${index != projects.length - 1 ? projects[index + 1].id : projects[0].id}`}
                 >
                   <IoArrowForwardSharp size={70} />

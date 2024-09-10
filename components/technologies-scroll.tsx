@@ -3,10 +3,8 @@ import React, { useState } from 'react';
 import {robotoMono} from "@/app/ui/fonts";
 
 export default function TechnologiesScroll({ technologies }: {technologies:string[]}) {
-    
-    const [isHovered, setIsHovered] = useState(false);
 
-    return <div className="w-full h-[5vh] overflow-x-hidden relative hidden md:block pointer-events-none">
+    return <div className="w-full h-[5vh] overflow-x-hidden relative hidden md:block pointer-events-none no-scrollbar">
         <div className="marquee">
             <span >
                <div className={`flex gap-2 mx-1 py-2`}>

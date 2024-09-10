@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
+import { createPortal } from "react-dom";
 
 export default function DesignShowcase() {
   const images = [
@@ -55,6 +56,7 @@ export default function DesignShowcase() {
   }, [mobileImages]);
 
   const handleImageClick = (url: string) => {
+    if (window.innerWidth <= 768) return;
     setFullscreenImage(url);
   };
 
@@ -135,9 +137,9 @@ export default function DesignShowcase() {
         ))}
       </div>
 
-      {fullscreenImage && (
+      {/* {fullscreenImage && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center"
+          className="fixed inset-0 bg-black bg-opacity-90 z-[60] flex items-center justify-center"
           onClick={closeFullscreen}
         >
           <div className="relative w-full h-full">
@@ -149,6 +151,36 @@ export default function DesignShowcase() {
             />
           </div>
         </div>
+      )} */}
+      {fullscreenImage && createPortal(
+        <div
+          className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center"
+          onClick={closeFullscreen}
+          style={{ zIndex: 9999 }}
+        >
+          <div className="flex items-center justify-center w-full h-full">
+            <div className="relative w-5/6 h-5/6">
+              <Image
+                src={fullscreenImage}
+                layout="fill"
+                objectFit="contain"
+                alt="Fullscreen image"
+              />
+            </div>
+            <button
+              className="ml-4 bg-white bg-opacity-50 hover:bg-opacity-75 text-black px-4 py-2 rounded-full transition-all duration-300"
+              onClick={(e) => {
+                e.stopPropagation();
+                const currentIndex = images.indexOf(fullscreenImage);
+                const nextIndex = (currentIndex + 1) % images.length;
+                setFullscreenImage(images[nextIndex]);
+              }}
+            >
+              Next
+            </button>
+          </div>
+        </div>,
+        document.body
       )}
     </>
   );
