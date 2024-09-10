@@ -16,6 +16,7 @@ export default function ProjectsSlider() {
       bio: "A restaurant website built with Next.js for both the front and backend. The standout feature is a comprehensive content management system that allows for creating, retrieving, and updating items in the database. Additionally, the mobile version includes a parallax scrolling effect for an enhanced user experience.",
       image_url: "/projects-images/nomad.gif",
       demo: "https://thenomadkitchen.vercel.app/",
+      repo: "https://github.com/lookatthisdoode/thenomadkitchen",
       technologies: [
         "Next.js",
         "Express.js",
@@ -31,6 +32,7 @@ export default function ProjectsSlider() {
       bio: "Mockup of online store built using Vite as a three-part application. The frontend is hosted on GitHub Pages, while a custom API with a basic CMS runs on Heroku, utilizing MongoDB Atlas for the database. Features include real-time content updates and a saveable shopping cart.",
       image_url: "/projects-images/vita.gif",
       demo: "https://lookatthisdoode.github.io/accessories-store-vite/",
+      repo: "https://github.com/lookatthisdoode/accessories-store-vite",
       technologies: [
         "vite",
         "express",
@@ -66,6 +68,7 @@ export default function ProjectsSlider() {
       bio: "Reviving the Clarence 1.0 Discord audio player, which connects seamlessly to your Discord channel to play music or podcasts. Equipped with essential player functionalities such as play, skip, and search from popular APIs, it utilizes Discord.js and the discord-player libraries to deliver a robust listening experience.",
       technologies: ["Vanilla Javascript", "Discord.js", "Python"],
       image_url: "/projects-images/clarence.gif",
+      repo: "https://github.com/lookatthisdoode/clarence-2-0",
     },
   ];
 
@@ -133,7 +136,7 @@ export default function ProjectsSlider() {
                 </div>
 
                 {/* Links */}
-                <div
+                {/* <div
                   className={`links text-sm ${robotoMono.className} italic text-yellow-200`}
                 >
                   {item.repo && (
@@ -148,7 +151,7 @@ export default function ProjectsSlider() {
                       />
                     </Link>
                   )}
-                </div>
+                </div> */}
               </div>
 
               {/* PC buttons */}
