@@ -85,7 +85,7 @@ export default function Home() {
     if (scrollableItem.current) {
       SweetScroll.create(
         {
-          duration: 1000,
+          duration: 200,
           easing: "easeOutCubic",
           horizontal: true,
         },

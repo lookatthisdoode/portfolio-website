@@ -5,7 +5,7 @@ import React from "react";
 export default function ProjectsPage() {
   return (
     <div
-      id="projects"
+    id="projects"
       className={`pt-24 md:pt-0 flex flex-col h-[100vh] bg-backgroundLight items-center justify-center snap-center overflow-clip`}
     >
       <div
