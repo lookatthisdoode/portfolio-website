@@ -27,6 +27,7 @@ export default function DesignShowcase() {
 
     return () => clearInterval(interval);
   }, []);
+  
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -68,7 +69,7 @@ export default function DesignShowcase() {
     <>
       <div
         id="imageShowcasePc"
-        className={`snap-center absolute inset-0 overflow-hidden hidden md:grid grid-cols-4 grid-rows-3 gap-2 `}
+        className={`snap-center absolute inset-0 overflow-hidden hidden md:grid grid-cols-4 grid-rows-3 gap-2`}
       >
         {images.map((url, index) => {
           const isExpanded = expandedIndex === index;
@@ -107,6 +108,8 @@ export default function DesignShowcase() {
           );
         })}
       </div>
+      
+
 
       <div
         id="imageShowcaseMobile"
