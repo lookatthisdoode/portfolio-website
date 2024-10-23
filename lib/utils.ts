@@ -14,3 +14,4 @@ export function mapRange(
 ): number {
   return ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin;
 }
+
