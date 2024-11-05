@@ -65,7 +65,7 @@ export default function ContactPagePopup({
         <Link href={"https://github.com/lookatthisdoode"}>
           <GHLogo size={25} />
         </Link>
-        <Link download locale={false} href={"/andrii_radchenko_cv.pdf"}>
+        <Link download locale={false} href={"/radchenko_andrii_fullstack.pdf"}>
           <CVLogo size={25} />
         </Link>
       </div>

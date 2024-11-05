@@ -89,7 +89,7 @@ export default function Home() {
           easing: "easeOutCubic",
           horizontal: true,
         },
-        "#wrapper",
+        "#wrapper"
       );
       return () => {};
     }
