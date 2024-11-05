@@ -48,7 +48,7 @@ export default function ContactPagePopup({
           {"Or "}
           <Link
             className={`text-backgroundDark underline`}
-            href={"/andrii_radchenko_cv.pdf"}
+            href={"/radchenko_andrii_fullstack.pdf"}
             locale={false}
             download
           >
